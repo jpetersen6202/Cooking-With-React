@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import IngredientList from './IngredientList'
+import { RecipieContext } from './App'
 
 export default function Recipie(props) {
+	const {handleRecipieDelete} = useContext(RecipieContext)
 	const {
-		id, name, cookTime, servings, instructions, ingredients, handleRecipieDelete
+		id, name, cookTime, servings, instructions, ingredients
 	} = props
 	return (
 		<div className='recipie'>

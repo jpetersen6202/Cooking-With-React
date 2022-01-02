@@ -1,10 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import RecipieList from './RecipieList'
 import '../css/app.css'
 import {v4 as uuidv4} from 'uuid';
 
+export const RecipieContext = React.createContext()
+const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes'
+
 function App() {
   const [recipies, setRecipies] = useState(sampleRecipies)
+
+  //load recipies from local storage
+  useEffect( () => {
+    const recipieJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if(recipieJSON != null) setRecipies(JSON.parse(recipieJSON))
+  }, [])
+  
+  //update recipies in local storage
+  useEffect( () => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipies))
+  }, [recipies])
+
+  const recipieContextValue = {
+    handleRecipieAdd,
+    handleRecipieDelete
+  }
   
   function handleRecipieAdd() {
     const newRecipie = {
@@ -26,13 +45,10 @@ function App() {
   }
 
   return (
-    <RecipieList 
-      recipies={recipies}
-      handleRecipieAdd = {handleRecipieAdd}
-      handleRecipieDelete = {handleRecipieDelete}
-    />
+    <RecipieContext.Provider value={recipieContextValue} >
+      <RecipieList recipies={recipies} />
+    </RecipieContext.Provider>
   )
-
 }
 
 
