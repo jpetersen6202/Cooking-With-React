@@ -2,6 +2,8 @@
 @import 'recipie-list.css';
 @import 'font.css';
 @import 'buttons.css';
+@import 'recipie.css';
+@import 'ingredient-list.css';
 
 *, *::before, *:after {
 	font-family: Gotham Rounded, sans-serif
@@ -14,4 +16,8 @@ html {
 body {
 	padding: 0;
 	margin: 0;
+}
+
+.mr-1 {
+	margin-right: 5px;
 }
