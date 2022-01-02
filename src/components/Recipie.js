@@ -3,7 +3,7 @@ import IngredientList from './IngredientList'
 
 export default function Recipie(props) {
 	const {
-		name, cookTime, servings, instructions, ingredients
+		id, name, cookTime, servings, instructions, ingredients, handleRecipieDelete
 	} = props
 	return (
 		<div className='recipie'>
@@ -11,7 +11,7 @@ export default function Recipie(props) {
 				<h3 className='recipie__title'>{name}</h3>
 				<div>
 					<button className='btn btn--primary mr-1'>Edit</button>
-					<button className='btn btn--danger'>Delete</button>
+					<button className='btn btn--danger' onClick={() => handleRecipieDelete(id)}>Delete</button>
 				</div>
 			</div>
 			<div className='recipie__row'>
