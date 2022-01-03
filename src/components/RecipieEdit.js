@@ -1,7 +1,7 @@
 import React from 'react'
 import RecipieIngredientEdit from './RecipieIngredientEdit'
 
-export default function RecipieEdit() {
+export default function RecipieEdit({recipie}) {
     return (
         <div className='recipie-edit'>
             <div className='recipie-edit__remove-button-container'>
@@ -9,13 +9,13 @@ export default function RecipieEdit() {
             </div>
             <div className='recipie-edit__details-grid'>
                 <label className='recipie-edit__label' htmlFor='name'>Name</label>
-                <input className='recipie-edit__input' type='text' name='name' id='name' />
+                <input className='recipie-edit__input' value={recipie.name} type='text' name='name' id='name' />
                 <label className='recipie-edit__label' htmlFor='cookTime'>Cook Time</label>
-                <input className='recipie-edit__input' type='text' name='cookTime' id='cookTime' />
+                <input className='recipie-edit__input' value={recipie.cookTime} type='text' name='cookTime' id='cookTime' />
                 <label className='recipie-edit__label' htmlFor='servings'>Servings</label>
-                <input className='recipie-edit__input' type='text' name='servings' min='1' id='servings' />
+                <input className='recipie-edit__input' value={recipie.servings} type='text' name='servings' min='1' id='servings' />
                 <label className='recipie-edit__label' htmlFor='instructions'>Instructions</label>
-                <textarea className='recipie-edit__input' name='instructions' id='instructions' />
+                <textarea className='recipie-edit__input' value={recipie.instructions} name='instructions' id='instructions' />
             </div>
 
             <br />
@@ -24,8 +24,9 @@ export default function RecipieEdit() {
                 <div>Name</div>
                 <div>Amount</div>
                 <div />
-                <RecipieIngredientEdit />
-                <RecipieIngredientEdit />
+                {recipie.ingredients.map(ingredient => (
+                    <RecipieIngredientEdit key={ingredient.id} ingredient={ingredient}/>
+                ))}
             </div>
             <div className='recipie-edit__add-ingredient-button-container'>
                 <button className='btn btn--primary'>Add Ingredient</button>

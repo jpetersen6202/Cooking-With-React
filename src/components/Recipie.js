@@ -3,7 +3,7 @@ import IngredientList from './IngredientList'
 import { RecipieContext } from './App'
 
 export default function Recipie(props) {
-	const {handleRecipieDelete} = useContext(RecipieContext)
+	const {handleRecipieDelete, handleRecipieSelect} = useContext(RecipieContext)
 	const {
 		id, name, cookTime, servings, instructions, ingredients
 	} = props
@@ -12,7 +12,7 @@ export default function Recipie(props) {
 			<div className='recipie__header'>
 				<h3 className='recipie__title'>{name}</h3>
 				<div>
-					<button className='btn btn--primary mr-1'>Edit</button>
+					<button className='btn btn--primary mr-1' onClick={() => handleRecipieSelect(id)}>Edit</button>
 					<button className='btn btn--danger' onClick={() => handleRecipieDelete(id)}>Delete</button>
 				</div>
 			</div>

@@ -9,6 +9,8 @@ const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes'
 
 function App() {
   const [recipies, setRecipies] = useState(sampleRecipies)
+  const [selectedRecipieId, setSelectedRecipieId] = useState()
+  const selectedRecipie = recipies.find(recipie => recipie.id === selectedRecipieId)
 
   //load recipies from local storage
   useEffect( () => {
@@ -23,7 +25,12 @@ function App() {
 
   const recipieContextValue = {
     handleRecipieAdd,
-    handleRecipieDelete
+    handleRecipieDelete,
+    handleRecipieSelect
+  }
+
+  function handleRecipieSelect(id){
+    setSelectedRecipieId(id)
   }
   
   function handleRecipieAdd() {
@@ -48,7 +55,7 @@ function App() {
   return (
     <RecipieContext.Provider value={recipieContextValue} >
       <RecipieList recipies={recipies} />
-      <RecipieEdit/>
+      {selectedRecipie && <RecipieEdit recipie={selectedRecipie}/>}
     </RecipieContext.Provider>
   )
 }
