@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import RecipieList from './RecipieList'
+import RecipieEdit from './RecipieEdit';
 import '../css/app.css'
 import {v4 as uuidv4} from 'uuid';
 
@@ -47,6 +48,7 @@ function App() {
   return (
     <RecipieContext.Provider value={recipieContextValue} >
       <RecipieList recipies={recipies} />
+      <RecipieEdit/>
     </RecipieContext.Provider>
   )
 }
